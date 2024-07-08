@@ -8,14 +8,15 @@ import { motion } from 'framer-motion'
 interface ItemWordProps {
     word: IWord
     removeWord: (id: number) => void
+    index: number
 }
 
-const ItemWord: React.FC<ItemWordProps> = ({ word, removeWord }) => (
+const ItemWord: React.FC<ItemWordProps> = ({ word, removeWord, index }) => (
     <motion.div
         className={cls.item}
         initial={{ x: 150, opacity: 0 }}
         animate={{ x: 0, opacity: 1 }}
-        transition={{ duration: 0.5 }}
+        transition={{ duration: 0.5, delay: index * 0.1 }}
     >
         <span className={cls.item__id}>{`#${word.id}`}</span>
         <span className={cls.item__word}>{word.word}</span>

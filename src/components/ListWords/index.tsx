@@ -18,11 +18,12 @@ const ListWords: React.FC = () => {
         <div className={cls.block}>
             {words.length > 0 ? (
                 <div className={cls.block__list}>
-                    {words.map((w) => (
+                    {words.map((w, i) => (
                         <ItemWord
                             word={w}
                             key={w.id}
                             removeWord={handleRemoveWord}
+                            index={i}
                         />
                     ))}
                 </div>
