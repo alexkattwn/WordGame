@@ -57,26 +57,28 @@ function App() {
     }
 
     useEffect(() => {
-        if (text) {
-            const command = commands.find((command) =>
-                text.toLowerCase().includes(command)
-            )
+        if (text.toLowerCase()) {
+            const command = commands.find((command) => text.includes(command))
             if (command) {
                 switch (command) {
                     case 'добавь слово':
-                        const wordToAdd = cleanText(
-                            text.split(`${command} `)[1]
-                        )
-                        if (wordToAdd) {
-                            addWord(wordToAdd)
+                        const a = text.split(`${command} `)[1]
+                        if (a) {
+                            const wordToAdd = cleanText(a)
+                            if (wordToAdd) {
+                                addWord(wordToAdd)
+                            }
                         }
                         break
                     case 'удали слово':
-                        const wordToRemove = cleanText(
-                            text.split(`${command} `)[1]
-                        )
-                        if (wordToRemove) {
-                            removeByWord(wordToRemove)
+                        const b = text.split(`${command} `)[1]
+                        if (b) {
+                            const wordToRemove = cleanText(
+                                text.split(`${command} `)[1]
+                            )
+                            if (wordToRemove) {
+                                removeByWord(wordToRemove)
+                            }
                         }
                         break
                     case 'начни заново':
