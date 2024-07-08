@@ -1,0 +1,41 @@
+.item {
+    width: 100%;
+    display: flex;
+    gap: 8px;
+
+    &__id {
+        width: 62px;
+        height: 44px;
+        display: flex;
+        align-items: center;
+        border-radius: 4px;
+        padding: 6px;
+        background-color: rgb(163, 161, 161);
+        color: white;
+    }
+
+    &__word {
+        width: 100%;
+        height: 44px;
+        border-radius: 4px;
+        padding: 6px;
+        display: flex;
+        align-items: center;
+        color: white;
+    }
+
+    &__remove {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: none;
+        background: transparent;
+        color: white;
+        transition: all 0.5s ease;
+
+        &:hover {
+            cursor: pointer;
+            color: #dddbdb;
+        }
+    }
+}

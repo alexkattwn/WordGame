@@ -1,0 +1,84 @@
+:root {
+    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+    font-weight: 400;
+
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100%;
+    overflow: hidden;
+}
+
+body {
+    overflow-x: hidden;
+    background-color: rgb(37, 37, 37);
+}
+
+#root {
+    height: 100%;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    padding: 20px;
+    height: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.top-block {
+    width: 100%;
+    display: flex;
+    gap: 8px;
+}
+
+.btn-micro {
+    background: transparent;
+    border: none;
+    color: white;
+    transition: all 0.5s ease;
+}
+
+.btn-micro:hover {
+    cursor: pointer;
+    color: #dddbdb;
+}
+
+.btn-add-word {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    padding: 6px;
+    gap: 4px;
+    border-radius: 6px;
+    color: white;
+    transition: all 0.5s ease;
+    border: 2px solid white;
+}
+
+@media (max-width: 600px) {
+    .btn-add-word > span {
+        display: none;
+    }
+}
+
+.btn-add-word:hover {
+    cursor: pointer;
+    color: #dddbdb;
+    border-color: #dddbdb;
+}
