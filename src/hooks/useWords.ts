@@ -14,6 +14,7 @@ interface WordsStore {
     addWord: (word: string) => void
     reset: () => void
     removeWord: (id: number) => void
+    removeByWord: (word: string) => void
 }
 
 const useWords = create<WordsStore>((set) => ({
@@ -52,6 +53,12 @@ const useWords = create<WordsStore>((set) => ({
     removeWord: (id) => {
         const data = getWordsFromLocalStorage()
         const newData = [...data.filter((w) => w.id !== id)]
+        setWordsToLocalStorage(newData)
+        set({ words: newData.reverse() })
+    },
+    removeByWord: (word: string) => {
+        const data = getWordsFromLocalStorage()
+        const newData = [...data.filter((w) => w.word !== word)]
         setWordsToLocalStorage(newData)
         set({ words: newData.reverse() })
     },
