@@ -18,7 +18,7 @@ const ListWords: React.FC = () => {
         <div className={cls.block}>
             {words.length > 0 ? (
                 <div className={cls.block__list}>
-                    {words.reverse().map((w) => (
+                    {words.map((w) => (
                         <ItemWord
                             word={w}
                             key={w.id}

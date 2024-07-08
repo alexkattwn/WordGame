@@ -38,6 +38,7 @@ body {
     margin: 0 auto;
     display: flex;
     flex-direction: column;
+    position: relative;
 }
 
 .top-block {
@@ -53,9 +54,24 @@ body {
     transition: all 0.5s ease;
 }
 
-.btn-micro:hover {
+.btn-micro:hover,
+.btn-gear-wheel:hover,
+.btn-reset:hover {
     cursor: pointer;
     color: #dddbdb;
+}
+
+.btn-gear-wheel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: none;
+    transition: all 0.5s ease;
+    color: white;
+    position: absolute;
+    bottom: 16px;
+    right: 28px;
 }
 
 .btn-add-word {
@@ -81,4 +97,26 @@ body {
     cursor: pointer;
     color: #dddbdb;
     border-color: #dddbdb;
+}
+
+.modal-main {
+    width: 200px;
+    height: 100px;
+    background-color: rgb(37, 37, 37);
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 15px;
+}
+
+.btn-reset {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: none;
+    gap: 4px;
+    color: white;
+    transition: all 0.5s ease;
 }

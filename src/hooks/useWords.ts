@@ -1,8 +1,10 @@
 import { create } from 'zustand'
+import toast from 'react-hot-toast'
 
 import { IWord } from '@/types'
 import {
     getWordsFromLocalStorage,
+    removeWordsFromLocalStorage,
     setWordsToLocalStorage,
 } from '@/helpers/localStorage.helper'
 
@@ -18,13 +20,13 @@ const useWords = create<WordsStore>((set) => ({
     words: [],
     getWords: () => {
         const data = getWordsFromLocalStorage()
-        set({ words: data })
+        set({ words: data.reverse() })
     },
     addWord: (word) => {
         const data = getWordsFromLocalStorage()
 
         if (data.find((w) => w.word === word.toLowerCase())) {
-            alert('Такое слово уже есть')
+            toast.error('Такое слово уже есть')
             return
         }
 
@@ -41,14 +43,17 @@ const useWords = create<WordsStore>((set) => ({
 
         const newData = [...data, { id, word: word.toLowerCase() }]
         setWordsToLocalStorage(newData)
-        set({ words: newData })
+        set({ words: newData.reverse() })
     },
-    reset: () => {},
+    reset: () => {
+        removeWordsFromLocalStorage()
+        set({ words: [] })
+    },
     removeWord: (id) => {
         const data = getWordsFromLocalStorage()
         const newData = [...data.filter((w) => w.id !== id)]
         setWordsToLocalStorage(newData)
-        set({ words: newData })
+        set({ words: newData.reverse() })
     },
 }))
 
