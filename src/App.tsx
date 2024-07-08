@@ -58,7 +58,9 @@ function App() {
 
     useEffect(() => {
         if (text) {
-            const command = commands.find((command) => text.includes(command))
+            const command = commands.find((command) =>
+                text.toLowerCase().includes(command)
+            )
             if (command) {
                 switch (command) {
                     case 'добавь слово':
