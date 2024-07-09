@@ -61,6 +61,7 @@ function App() {
             const command = commands.find((command) =>
                 text.toLowerCase().includes(command)
             )
+            alert(`0 ${text}`)
             alert(`1 ${command}`)
             if (command) {
                 switch (command) {
