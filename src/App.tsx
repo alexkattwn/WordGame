@@ -58,9 +58,7 @@ function App() {
 
     useEffect(() => {
         if (text) {
-            alert(`0 ${text}`)
             const lowerText = text.toLocaleLowerCase()
-            alert(`0.1 ${lowerText}`)
             const command = commands.find((command) =>
                 lowerText.includes(command)
             )
@@ -68,7 +66,7 @@ function App() {
             if (command) {
                 switch (command) {
                     case 'добавь слово':
-                        const a = text.split(`${command}`)[1]
+                        const a = lowerText.split(`${command}`)[1]
                         alert(`2 ${a}`)
                         if (a) {
                             const wordToAdd = cleanText(a)
@@ -79,10 +77,10 @@ function App() {
                         }
                         break
                     case 'удали слово':
-                        const b = text.split(`${command}`)[1]
+                        const b = lowerText.split(`${command}`)[1]
                         if (b) {
                             const wordToRemove = cleanText(
-                                text.split(`${command} `)[1]
+                                lowerText.split(`${command} `)[1]
                             )
                             if (wordToRemove) {
                                 removeByWord(wordToRemove)
