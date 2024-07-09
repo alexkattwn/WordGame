@@ -8,7 +8,7 @@ const ToasterProvider: React.FC = () => {
                     background: '#333',
                     color: '#fff',
                 },
-                position: 'bottom-center',
+                position: 'top-center',
             }}
         />
     )

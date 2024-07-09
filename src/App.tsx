@@ -62,7 +62,7 @@ function App() {
             if (command) {
                 switch (command) {
                     case 'добавь слово':
-                        const a = text.split(`${command} `)[1]
+                        const a = text.split(`${command}`)[1]
                         if (a) {
                             const wordToAdd = cleanText(a)
                             if (wordToAdd) {
@@ -71,7 +71,7 @@ function App() {
                         }
                         break
                     case 'удали слово':
-                        const b = text.split(`${command} `)[1]
+                        const b = text.split(`${command}`)[1]
                         if (b) {
                             const wordToRemove = cleanText(
                                 text.split(`${command} `)[1]

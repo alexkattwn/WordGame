@@ -96,6 +96,12 @@ body {
     .btn-add-word > span {
         display: none;
     }
+
+    .btn-gear-wheel {
+        bottom: auto;
+        top: 78px;
+        right: 21px;
+    }
 }
 
 .btn-add-word:hover {

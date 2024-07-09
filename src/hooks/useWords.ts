@@ -36,10 +36,22 @@ const useWords = create<WordsStore>((set) => ({
         if (data.length === 0) {
             id = 1
         } else {
-            id =
-                data.reduce((max, current) => {
-                    return current.id > max.id ? current : max
-                }, data[0]).id + 1
+            const lastElement = data.reduce((max, current) => {
+                return current.id > max.id ? current : max
+            }, data[0])
+
+            id = lastElement.id + 1
+
+            let lastLetter = lastElement.word[lastElement.word.length - 1]
+
+            if (lastLetter === 'ь' || lastLetter === 'ъ') {
+                lastLetter = lastElement.word[lastElement.word.length - 2]
+            }
+
+            if (lastLetter !== word.toLowerCase()[0]) {
+                toast.error(`Слово должно начинаться на букву "${lastLetter}"`)
+                return
+            }
         }
 
         const newData = [...data, { id, word: word.toLowerCase() }]
