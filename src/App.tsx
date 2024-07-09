@@ -57,9 +57,10 @@ function App() {
     }
 
     useEffect(() => {
-        if (text.toLowerCase()) {
-            const command = commands.find((command) => text.includes(command))
-            alert(text)
+        if (text) {
+            const command = commands.find((command) =>
+                text.toLowerCase().includes(command)
+            )
             alert(command)
             if (command) {
                 switch (command) {
