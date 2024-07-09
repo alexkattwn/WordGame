@@ -76,9 +76,7 @@ function App() {
                     case 'удали слово':
                         const b = lowerText.split(`${command}`)[1]
                         if (b) {
-                            const wordToRemove = cleanText(
-                                lowerText.split(`${command} `)[1]
-                            )
+                            const wordToRemove = cleanText(b)
                             if (wordToRemove) {
                                 removeByWord(wordToRemove)
                             }
