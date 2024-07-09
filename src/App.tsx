@@ -62,15 +62,12 @@ function App() {
             const command = commands.find((command) =>
                 lowerText.includes(command)
             )
-            alert(`1 ${command}`)
             if (command) {
                 switch (command) {
                     case 'добавь слово':
                         const a = lowerText.split(`${command}`)[1]
-                        alert(`2 ${a}`)
                         if (a) {
                             const wordToAdd = cleanText(a)
-                            alert(`3 ${wordToAdd}`)
                             if (wordToAdd) {
                                 addWord(wordToAdd)
                             }
