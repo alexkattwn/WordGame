@@ -59,6 +59,8 @@ function App() {
     useEffect(() => {
         if (text) {
             alert(`0 ${text}`)
+            const lowerText = text.toLocaleLowerCase()
+            alert(`0.1 ${lowerText}`)
             const command = commands.find((command) => text.includes(command))
             alert(`1 ${command}`)
             if (command) {
