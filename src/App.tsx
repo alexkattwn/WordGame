@@ -61,7 +61,9 @@ function App() {
             alert(`0 ${text}`)
             const lowerText = text.toLocaleLowerCase()
             alert(`0.1 ${lowerText}`)
-            const command = commands.find((command) => text.includes(command))
+            const command = commands.find((command) =>
+                lowerText.includes(command)
+            )
             alert(`1 ${command}`)
             if (command) {
                 switch (command) {
