@@ -7,6 +7,7 @@ import {
     removeWordsFromLocalStorage,
     setWordsToLocalStorage,
 } from '@/helpers/localStorage.helper'
+import { cleanText } from '@/utils'
 
 interface WordsStore {
     words: IWord[]
@@ -26,7 +27,9 @@ const useWords = create<WordsStore>((set) => ({
     addWord: (word) => {
         const data = getWordsFromLocalStorage()
 
-        if (data.find((w) => w.word === word.toLowerCase())) {
+        const validatedWord = cleanText(word)
+
+        if (data.find((w) => w.word === validatedWord)) {
             toast.error('Такое слово уже есть')
             return
         }
@@ -48,13 +51,13 @@ const useWords = create<WordsStore>((set) => ({
                 lastLetter = lastElement.word[lastElement.word.length - 2]
             }
 
-            if (lastLetter !== word.toLowerCase()[0]) {
+            if (lastLetter !== validatedWord[0]) {
                 toast.error(`Слово должно начинаться на букву "${lastLetter}"`)
                 return
             }
         }
 
-        const newData = [...data, { id, word: word.toLowerCase() }]
+        const newData = [...data, { id, word: validatedWord }]
         setWordsToLocalStorage(newData)
         set({ words: newData.reverse() })
     },
