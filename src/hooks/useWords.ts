@@ -112,7 +112,13 @@ const useWords = create<WordsStore>((set, get) => ({
     },
     sortingListWords: (word: string) => {
         const data = getWordsFromLocalStorage().reverse()
-        set({ words: [...data.filter((w) => w.word.includes(word))] })
+        set({
+            words: [
+                ...data.filter((w) =>
+                    w.word.includes(word.toLocaleLowerCase())
+                ),
+            ],
+        })
     },
 }))
 
