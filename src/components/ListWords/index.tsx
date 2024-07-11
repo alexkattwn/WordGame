@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+import { AnimatePresence } from 'framer-motion'
 
 import useWords from '@/hooks/useWords'
 import ItemWord from '@components/ItemWord'
@@ -12,20 +13,22 @@ const ListWords: React.FC = () => {
         getWords()
     }, [])
 
-    const handleRemoveWord = (id: number) => removeWord(id)
+    const handleRemoveWord = (word: string) => removeWord(word)
 
     return (
         <div className={cls.block}>
             {words.length > 0 ? (
                 <div className={cls.block__list}>
-                    {words.map((w, i) => (
-                        <ItemWord
-                            word={w}
-                            key={w.id}
-                            removeWord={handleRemoveWord}
-                            index={i}
-                        />
-                    ))}
+                    <AnimatePresence>
+                        {words.map((w, i) => (
+                            <ItemWord
+                                word={w}
+                                key={w.id}
+                                removeWord={handleRemoveWord}
+                                index={i}
+                            />
+                        ))}
+                    </AnimatePresence>
                 </div>
             ) : (
                 <span>Список пока пуст...</span>

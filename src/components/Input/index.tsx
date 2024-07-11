@@ -1,4 +1,7 @@
+import { useEffect, useRef, useState } from 'react'
 import { IoCloseOutline, IoSearchSharp } from 'react-icons/io5'
+
+import useWords from '@/hooks/useWords'
 
 import cls from '@components/Input/index.module.scss'
 
@@ -14,24 +17,46 @@ interface InputProps {
 const Input: React.FC<InputProps> = ({
     id,
     onChange,
+    onClear,
     value,
     label,
     type,
-    onClear,
 }) => {
+    const [isSearch, setIsSearch] = useState<boolean>(false)
+
+    const ref = useRef<HTMLInputElement>(null)
+
+    const { sortingListWords } = useWords()
+
+    useEffect(() => {
+        if (isSearch) {
+            sortingListWords(value)
+        }
+    }, [value])
+
+    useEffect(() => {
+        if (isSearch && ref.current) {
+            ref.current.focus()
+        }
+    }, [isSearch])
+
     return (
         <div className={cls.main}>
-            <span className={cls.main__search}>
+            <button
+                className={`${cls.main__search} ${isSearch ? cls.active : ''}`}
+                onClick={() => setIsSearch(!isSearch)}
+            >
                 <IoSearchSharp size={32} />
-            </span>
+            </button>
             <div className={cls.block}>
                 <input
+                    ref={ref}
                     onChange={onChange}
                     value={value}
                     type={type}
                     id={id}
                     className={cls.block__input}
-                    placeholder=' '
+                    placeholder=''
                 />
                 <label className={cls.block__label} htmlFor={id}>
                     {label}

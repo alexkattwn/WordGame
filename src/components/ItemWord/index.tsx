@@ -7,7 +7,7 @@ import { motion } from 'framer-motion'
 
 interface ItemWordProps {
     word: IWord
-    removeWord: (id: number) => void
+    removeWord: (word: string) => void
     index: number
 }
 
@@ -16,16 +16,18 @@ const ItemWord: React.FC<ItemWordProps> = ({ word, removeWord, index }) => (
         className={cls.item}
         initial={{ x: 150, opacity: 0 }}
         animate={{ x: 0, opacity: 1 }}
+        exit={{ x: 150, opacity: 0 }}
         transition={{ duration: 0.5, delay: index * 0.1 }}
     >
         <span className={cls.item__id}>{`#${word.id}`}</span>
         <span className={cls.item__word}>{word.word}</span>
         <button
             className={cls.item__remove}
-            onClick={() => removeWord(word.id)}
+            onClick={() => removeWord(word.word)}
         >
             <IoTrashOutline size={28} />
         </button>
     </motion.div>
 )
+
 export default ItemWord

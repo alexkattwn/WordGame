@@ -14,18 +14,19 @@ interface WordsStore {
     getWords: () => void
     addWord: (word: string) => void
     reset: () => void
-    removeWord: (id: number) => void
-    removeByWord: (word: string) => void
+    removeWord: (word: string) => void
+    useVoiceCommands: (text: string) => void
+    sortingListWords: (word: string) => void
 }
 
-const useWords = create<WordsStore>((set) => ({
+const useWords = create<WordsStore>((set, get) => ({
     words: [],
     getWords: () => {
-        const data = getWordsFromLocalStorage()
-        set({ words: data.reverse() })
+        const data = getWordsFromLocalStorage().reverse()
+        set({ words: data })
     },
     addWord: (word) => {
-        const data = getWordsFromLocalStorage()
+        const data = getWordsFromLocalStorage().reverse()
 
         const validatedWord = cleanText(word)
 
@@ -59,23 +60,59 @@ const useWords = create<WordsStore>((set) => ({
 
         const newData = [...data, { id, word: validatedWord }]
         setWordsToLocalStorage(newData)
-        set({ words: newData.reverse() })
+        set({ words: newData })
     },
     reset: () => {
         removeWordsFromLocalStorage()
         set({ words: [] })
     },
-    removeWord: (id) => {
-        const data = getWordsFromLocalStorage()
-        const newData = [...data.filter((w) => w.id !== id)]
-        setWordsToLocalStorage(newData)
-        set({ words: newData.reverse() })
-    },
-    removeByWord: (word: string) => {
-        const data = getWordsFromLocalStorage()
+    removeWord: (word) => {
+        const data = getWordsFromLocalStorage().reverse()
         const newData = [...data.filter((w) => w.word !== word)]
         setWordsToLocalStorage(newData)
-        set({ words: newData.reverse() })
+        set({ words: newData })
+    },
+    useVoiceCommands: (text: string) => {
+        const commands: string[] = [
+            'добавь слово',
+            'удали слово',
+            'начни заново',
+        ]
+
+        const lowerText = text.toLocaleLowerCase()
+        const command = commands.find((command) => lowerText.includes(command))
+
+        if (command) {
+            switch (command) {
+                case 'добавь слово':
+                    const a = lowerText.split(`${command}`)[1]
+                    if (a) {
+                        const wordToAdd = cleanText(a)
+                        if (wordToAdd) {
+                            get().addWord(wordToAdd)
+                        }
+                    }
+                    break
+                case 'удали слово':
+                    const b = lowerText.split(`${command}`)[1]
+                    if (b) {
+                        const wordToRemove = cleanText(b)
+                        if (wordToRemove) {
+                            get().removeWord(wordToRemove)
+                        }
+                    }
+                    break
+                case 'начни заново':
+                    get().reset()
+                    break
+                default:
+                    break
+            }
+        }
+    },
+    sortingListWords: (word: string) => {
+        const data = getWordsFromLocalStorage().reverse()
+        set({ words: [...data.filter((w) => w.word.includes(word))] })
     },
 }))
 

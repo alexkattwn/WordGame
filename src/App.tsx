@@ -14,14 +14,11 @@ import useWords from '@/hooks/useWords'
 import useModal from '@/hooks/useModal'
 import Modal from '@components/Modal'
 import useSpeechRecognition from '@/hooks/useSpeechRecognition'
-import { cleanText } from '@/utils'
-
-const commands: string[] = ['добавь слово', 'удали слово', 'начни заново']
 
 function App() {
     const [enteredWord, setEnteredWord] = useState<string>('')
 
-    const { addWord, reset, removeByWord } = useWords()
+    const { addWord, reset, useVoiceCommands } = useWords()
     const { setShowModal } = useModal()
 
     const {
@@ -58,37 +55,7 @@ function App() {
 
     useEffect(() => {
         if (text) {
-            const lowerText = text.toLocaleLowerCase()
-            const command = commands.find((command) =>
-                lowerText.includes(command)
-            )
-            if (command) {
-                switch (command) {
-                    case 'добавь слово':
-                        const a = lowerText.split(`${command}`)[1]
-                        if (a) {
-                            const wordToAdd = cleanText(a)
-                            if (wordToAdd) {
-                                addWord(wordToAdd)
-                            }
-                        }
-                        break
-                    case 'удали слово':
-                        const b = lowerText.split(`${command}`)[1]
-                        if (b) {
-                            const wordToRemove = cleanText(b)
-                            if (wordToRemove) {
-                                removeByWord(wordToRemove)
-                            }
-                        }
-                        break
-                    case 'начни заново':
-                        reset()
-                        break
-                    default:
-                        break
-                }
-            }
+            useVoiceCommands(text)
             setEnteredWord(text)
         }
     }, [text])
