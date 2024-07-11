@@ -26,7 +26,7 @@ const useWords = create<WordsStore>((set, get) => ({
         set({ words: data })
     },
     addWord: (word) => {
-        const data = getWordsFromLocalStorage().reverse()
+        const data = getWordsFromLocalStorage()
 
         const validatedWord = cleanText(word)
 
@@ -60,7 +60,7 @@ const useWords = create<WordsStore>((set, get) => ({
 
         const newData = [...data, { id, word: validatedWord }]
         setWordsToLocalStorage(newData)
-        set({ words: newData })
+        set({ words: newData.reverse() })
     },
     reset: () => {
         removeWordsFromLocalStorage()
