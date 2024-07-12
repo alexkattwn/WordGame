@@ -39,8 +39,9 @@ const options = {
         tooltip: {
             callbacks: {
                 label: function (context: any) {
-                    const label = context.dataset.label || ''
-                    return label
+                    const yValue = context.raw
+
+                    return '  ' + yValue
                 },
             },
         },
