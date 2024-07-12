@@ -134,7 +134,9 @@ const useWords = create<WordsStore>((set, get) => ({
         const data = getWordsFromLocalStorage()
         const fileContent = JSON.stringify(data)
 
-        const blob = new Blob([fileContent], { type: 'text/plain' })
+        const blob = new Blob([fileContent], {
+            type: 'text/plain;charset=utf-8',
+        })
 
         const link = document.createElement('a')
         link.href = URL.createObjectURL(blob)
