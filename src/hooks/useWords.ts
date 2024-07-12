@@ -18,6 +18,8 @@ interface WordsStore {
     useVoiceCommands: (text: string) => void
     sortingListWords: (word: string) => void
     getStatistics: () => { firstLetters: string[]; countWordsSpelled: number[] }
+    downloadResults: () => void
+    uploadWordsFromFile: (file: File) => void
 }
 
 const useWords = create<WordsStore>((set, get) => ({
@@ -127,6 +129,34 @@ const useWords = create<WordsStore>((set, get) => ({
         const countWordsSpelled = getCountWordsSpelled(firstLetters, data)
 
         return { firstLetters, countWordsSpelled }
+    },
+    downloadResults: () => {
+        const data = getWordsFromLocalStorage()
+        const fileContent = JSON.stringify(data)
+
+        const blob = new Blob([fileContent], { type: 'text/plain' })
+
+        const link = document.createElement('a')
+        link.href = URL.createObjectURL(blob)
+        link.download = `${Date.now()}.txt`
+
+        document.body.appendChild(link)
+        link.click()
+
+        document.body.removeChild(link)
+    },
+    uploadWordsFromFile: (file) => {
+        const reader = new FileReader()
+
+        reader.onload = (e) => {
+            const content = e.target?.result as string
+            const data: IWord[] = JSON.parse(content)
+            setWordsToLocalStorage(data)
+
+            set({ words: data.reverse() })
+        }
+
+        reader.readAsText(file)
     },
 }))
 

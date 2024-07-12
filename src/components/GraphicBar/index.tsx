@@ -40,8 +40,28 @@ const options = {
             callbacks: {
                 label: function (context: any) {
                     const label = context.dataset.label || ''
-                    console.log(context)
                     return label
+                },
+            },
+        },
+    },
+    scales: {
+        x: {
+            ticks: {
+                stepSize: 1,
+                precision: 0,
+                color: '#e7e6e6',
+                font: {
+                    size: 14,
+                },
+            },
+        },
+        y: {
+            ticks: {
+                color: '#e7e6e6',
+                fontSize: '1px',
+                font: {
+                    size: 14,
                 },
             },
         },

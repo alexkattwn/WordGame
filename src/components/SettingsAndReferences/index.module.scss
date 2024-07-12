@@ -1,6 +1,6 @@
 .modalMain {
-    width: 260px;
-    height: 200px;
+    width: 340px;
+    height: 240px;
     background-color: rgb(37, 37, 37);
     border-radius: 4px;
     display: flex;
@@ -8,22 +8,78 @@
     align-items: center;
     padding: 15px;
 
-    &__btnReset {
+    &__fileBlock {
+        width: 100%;
         display: flex;
-        align-items: center;
         justify-content: center;
-        background: transparent;
-        border: none;
         gap: 4px;
-        color: white;
-        transition: all 0.5s ease;
-        padding: 4px;
-        border-radius: 4px;
 
-        &:hover {
-            cursor: pointer;
-            color: #dddbdb;
-            background-color: #727272;
+        &__btnDownload {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: transparent;
+            color: #e7e6e6;
+            transition: all 0.5s ease;
+            padding: 4px 6px;
+            border-radius: 4px;
+            font-size: 14px;
+            border: 2px solid #e7e6e6;
+
+            &:hover {
+                cursor: pointer;
+                color: #dddbdb;
+                background-color: #727272;
+            }
+        }
+
+        &__btnReset {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: transparent;
+            color: #e7e6e6;
+            transition: all 0.5s ease;
+            padding: 4px 6px;
+            border-radius: 4px;
+            border: 2px solid #e7e6e6;
+
+            &:hover {
+                cursor: pointer;
+                color: #dddbdb;
+                background-color: #727272;
+            }
+        }
+
+        &__upload {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.5s ease;
+            padding: 4px 6px;
+            border-radius: 4px;
+            font-size: 14px;
+            border: 2px solid #e7e6e6;
+
+            &:hover {
+                cursor: pointer;
+                color: #dddbdb;
+                background-color: #727272;
+            }
+
+            &__label {
+                color: #e7e6e6;
+                display: flex;
+                align-items: center;
+
+                &:hover {
+                    cursor: pointer;
+                }
+            }
+
+            &__input {
+                display: none;
+            }
         }
     }
 
@@ -43,7 +99,7 @@
             display: flex;
             flex-direction: column;
             justify-content: flex-start;
-            padding: 5px 15px;
+            padding: 5px 45px;
         }
     }
 }
