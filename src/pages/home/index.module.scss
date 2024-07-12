@@ -1,0 +1,111 @@
+.container {
+    width: 100%;
+    max-width: 1200px;
+    padding: 20px;
+    height: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+
+    &__topBlock {
+        width: 100%;
+        display: flex;
+        gap: 8px;
+
+        &__btnMicro {
+            background: transparent;
+            border: none;
+            color: white;
+            transition: all 0.5s ease;
+            padding: 4px;
+            border-radius: 4px;
+
+            &:hover {
+                cursor: pointer;
+                color: #dddbdb;
+                background-color: #727272;
+            }
+        }
+
+        &__btnAddWord {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: transparent;
+            padding: 6px;
+            gap: 4px;
+            border-radius: 6px;
+            color: white;
+            transition: all 0.5s ease;
+            border: 2px solid white;
+
+            @media (max-width: 600px) {
+                & > span {
+                    display: none;
+                }
+            }
+
+            &:hover {
+                cursor: pointer;
+                color: #dddbdb;
+                border-color: #dddbdb;
+                background-color: #727272;
+            }
+        }
+    }
+
+    &__btnGearWheel {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: transparent;
+        border: none;
+        transition: all 0.5s ease;
+        color: white;
+        position: absolute;
+        bottom: 12px;
+        right: 28px;
+        padding: 4px;
+        border-radius: 4px;
+
+        @media (max-width: 600px) {
+            bottom: auto;
+            top: 78px;
+            right: 21px;
+        }
+
+        &:hover {
+            cursor: pointer;
+            color: #dddbdb;
+            background-color: #727272;
+        }
+    }
+
+    &__btnGoToStatistic {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: transparent;
+        border: none;
+        transition: all 0.5s ease;
+        color: white;
+        position: absolute;
+        bottom: 12px;
+        left: 28px;
+        padding: 4px;
+        border-radius: 4px;
+
+        @media (max-width: 600px) {
+            bottom: auto;
+            top: 78px;
+            left: 21px;
+        }
+
+        &:hover {
+            cursor: pointer;
+            color: #dddbdb;
+            background-color: #727272;
+        }
+    }
+}

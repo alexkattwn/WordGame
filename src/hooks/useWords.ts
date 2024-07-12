@@ -7,7 +7,7 @@ import {
     removeWordsFromLocalStorage,
     setWordsToLocalStorage,
 } from '@/helpers/localStorage.helper'
-import { cleanText } from '@/utils'
+import { cleanText, getCountWordsSpelled, getUniqueFirstLetters } from '@/utils'
 
 interface WordsStore {
     words: IWord[]
@@ -17,6 +17,7 @@ interface WordsStore {
     removeWord: (word: string) => void
     useVoiceCommands: (text: string) => void
     sortingListWords: (word: string) => void
+    getStatistics: () => { firstLetters: string[]; countWordsSpelled: number[] }
 }
 
 const useWords = create<WordsStore>((set, get) => ({
@@ -67,10 +68,10 @@ const useWords = create<WordsStore>((set, get) => ({
         set({ words: [] })
     },
     removeWord: (word) => {
-        const data = getWordsFromLocalStorage().reverse()
+        const data = getWordsFromLocalStorage()
         const newData = [...data.filter((w) => w.word !== word)]
         setWordsToLocalStorage(newData)
-        set({ words: newData })
+        set({ words: newData.reverse() })
     },
     useVoiceCommands: (text: string) => {
         const commands: string[] = [
@@ -119,6 +120,13 @@ const useWords = create<WordsStore>((set, get) => ({
                 ),
             ],
         })
+    },
+    getStatistics: () => {
+        const data = getWordsFromLocalStorage()
+        const firstLetters = getUniqueFirstLetters(data)
+        const countWordsSpelled = getCountWordsSpelled(firstLetters, data)
+
+        return { firstLetters, countWordsSpelled }
     },
 }))
 

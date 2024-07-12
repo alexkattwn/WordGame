@@ -1,0 +1,40 @@
+.container {
+    width: 100%;
+    max-width: 1200px;
+    padding: 20px;
+    height: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+
+    &__header {
+        color: white;
+        font-weight: 400;
+        font-size: 22px;
+        margin: 0px 15px;
+    }
+
+    &__back {
+        border: none;
+        background: transparent;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        color: white;
+        font-size: 16px;
+        transition: all 0.5s ease;
+        padding: 4px;
+        border-radius: 4px;
+        position: absolute;
+        top: 25px;
+        right: 28px;
+
+        &:hover {
+            cursor: pointer;
+            color: #dddbdb;
+            background-color: #727272;
+        }
+    }
+}

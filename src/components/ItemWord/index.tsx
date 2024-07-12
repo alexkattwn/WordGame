@@ -1,9 +1,9 @@
 import { IoTrashOutline } from 'react-icons/io5'
+import { motion } from 'framer-motion'
 
 import { IWord } from '@/types'
 
 import cls from '@components/ItemWord/index.module.scss'
-import { motion } from 'framer-motion'
 
 interface ItemWordProps {
     word: IWord
@@ -17,7 +17,7 @@ const ItemWord: React.FC<ItemWordProps> = ({ word, removeWord, index }) => (
         initial={{ x: 150, opacity: 0 }}
         animate={{ x: 0, opacity: 1 }}
         exit={{ x: 150, opacity: 0 }}
-        transition={{ duration: 0.5, delay: index * 0.1 }}
+        transition={{ duration: 0.35, delay: index * 0.1 }}
     >
         <span className={cls.item__id}>{`#${word.id}`}</span>
         <span className={cls.item__word}>{word.word}</span>

@@ -1,0 +1,49 @@
+.modalMain {
+    width: 260px;
+    height: 200px;
+    background-color: rgb(37, 37, 37);
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 15px;
+
+    &__btnReset {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: transparent;
+        border: none;
+        gap: 4px;
+        color: white;
+        transition: all 0.5s ease;
+        padding: 4px;
+        border-radius: 4px;
+
+        &:hover {
+            cursor: pointer;
+            color: #dddbdb;
+            background-color: #727272;
+        }
+    }
+
+    &__commandList {
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 4px;
+        color: white;
+        margin-top: 6px;
+
+        &__elems {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            padding: 5px 15px;
+        }
+    }
+}
