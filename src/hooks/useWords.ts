@@ -25,7 +25,7 @@ interface WordsStore {
 const useWords = create<WordsStore>((set, get) => ({
     words: [],
     getWords: () => {
-        const data = getWordsFromLocalStorage()
+        const data = getWordsFromLocalStorage().reverse()
         set({ words: data })
     },
     addWord: (word) => {
