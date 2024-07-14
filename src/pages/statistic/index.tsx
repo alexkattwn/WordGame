@@ -11,7 +11,7 @@ const StatisticPage: React.FC = () => {
     const navigate = useNavigate()
 
     const handleGoBack = () => {
-        navigate(HOME_ROUTE)
+        navigate(HOME_ROUTE, { replace: true })
     }
 
     return (

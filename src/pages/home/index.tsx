@@ -68,7 +68,8 @@ const HomePage: React.FC = () => {
         }
     }, [text])
 
-    const handleGoToStatistic = () => navigate(STATISTIC_ROUTE)
+    const handleGoToStatistic = () =>
+        navigate(STATISTIC_ROUTE, { replace: true })
 
     return (
         <motion.div
